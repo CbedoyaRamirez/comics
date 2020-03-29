@@ -8,12 +8,23 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Box from "@material-ui/core/Box";
 import axios from "axios";
 
 export default function useObtenerComicsEspecifico() {
   const [comicData, setComicData] = useState(null);
   const [numeroComic, setNumeroComic] = useState(1);
+  const [value, setValue] = useState(0);
+  const [hover, setHover] = useState(-1);
   const [abrir, setAbrir] = useState(false);
+
+  const labels = {
+    1: "No me gusta",
+    2: "Feo",
+    3: "Aceptable",
+    4: "Bonito",
+    5: "Una obra Maestra"
+  };
 
   const abrirDialogo = () => {
     setAbrir(true);
@@ -28,7 +39,7 @@ export default function useObtenerComicsEspecifico() {
   };
 
   const buscarComic = () => {
-    console.log("entro buscarComic " + numeroComic);
+    setValue(0);
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/http://xkcd.com/" +
@@ -57,7 +68,19 @@ export default function useObtenerComicsEspecifico() {
         </Form.Group>
 
         <Form.Group>
-          <Rating className="MuiRating" size="large" />
+          <Rating
+            className="MuiRating"
+            size="large"
+            value={value}
+            precision={1}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
+          />
+          {value !== null && <Box ml={2}>{labels[value]}</Box>}
         </Form.Group>
         <Dialog
           open={abrir}
@@ -108,7 +131,19 @@ export default function useObtenerComicsEspecifico() {
       </Form.Group>
 
       <Form.Group>
-        <Rating className="MuiRating" size="large" />
+        <Rating
+          className="MuiRating"
+          size="large"
+          value={value}
+          precision={1}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+        />
+        {value !== null && <Box ml={2}>{labels[value]}</Box>}
       </Form.Group>
       <Dialog
         open={abrir}
