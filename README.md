@@ -2,7 +2,7 @@
 
 Para ejecutar la aplicacion se debe realizar los siguientes pasos :
 
-1) Ejecuar el siguiente comando en alguna carpeta de sus preferencia:
+1) Ejecuar el siguiente comando en alguna carpeta de su preferencia:
 
 git clone https://github.com/CbedoyaRamirez/comics.git
 
