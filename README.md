@@ -1,5 +1,4 @@
 # comics
-prueba
 
 Para ejecutar la aplicacion se debe realizar los siguientes pasos :
 
